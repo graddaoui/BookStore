@@ -8,7 +8,7 @@ public class Utility {
 	}
 	// calculateTotalPrice method
 
-	int calculateTotalPrice(int qte, int unitPrice) {
+	double calculateTotalPrice(int qte, double unitPrice) {
 		return qte * unitPrice;
 
 	}
