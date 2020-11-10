@@ -17,12 +17,12 @@ public class Main {
 		Connection conn = null;
 
 		try {
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookstore", "root", "");
-			System.out.println("Vous êtes connecté !");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/BookStore", "root", "12345");
+			System.out.println("Vous ï¿½tes connectï¿½ !");
 		}
 
 		catch (SQLException e) {
-			throw new Error("Hmm.. il'ya un problème de connexion ! ", e);
+			throw new Error("Hmm.. il'ya un problï¿½me de connexion ! ", e);
 		}
 
 		Statement stmt = conn.createStatement();
@@ -58,7 +58,7 @@ public class Main {
 				book.setTitle(title);
 
 				daoBook.addBook(book);
-				System.out.println("Vous avez ajouter en succées un nouveau livre.");
+				System.out.println("Vous avez ajouter en succï¿½es un nouveau livre.");
 
 				break;
 

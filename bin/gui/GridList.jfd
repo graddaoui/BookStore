@@ -1,0 +1,105 @@
+JFDML JFormDesigner: "7.0.2.6.321" Java: "11.0.8" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq t {space ::191:x, comp button4:::p:105:p, space :p:49:p, comp button3:::p::p, space :p:63:p, comp button1:::p:117:p, space :p:57:p, comp button2:::p:125:p, space :p:26:p}, seq {space :::p, par l {comp label3::l:p::p, comp label4::l:p::p, comp label5::l:p::p, comp label2::l:p::p, comp label1::l:p::p}, space :::x, par t:::p {comp authorf::l::157:x, comp pricef::l::157:x, comp titlef::l::157:x, comp datef::l:::x, comp idf::l::157:x}, space :p:226:p, comp scrollPane1:::p:409:p}}"
+			"$verticalGroup": "par l {seq l {comp scrollPane1:::p:203:p, space ::151:x, par b {comp button2::b:p::p, comp button1::b:p::p, comp button3::b:p::p, comp button4::b:p::p}, space :p:27:p}, seq l {space :p:42:p, par b {comp label1::b:p::p, comp idf::b:p::p}, space :p:26:p, par b {comp label2::b:p::p, comp titlef::b:p::p}, space :p:33:p, par b {comp label3::b:p::p, comp pricef::b:p::p}, space :p:29:p, par b {comp label4::b:p::p, comp authorf::b:p::p}, space :p:34:p, par b {comp label5::b:p::p, comp datef::b:p::p}, space ::97:x}}"
+		} ) {
+			name: "this"
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane1"
+				add( new FormComponent( "javax.swing.JTable" ) {
+					name: "table1"
+					"columnSelectionAllowed": true
+					"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector, new java.util.Vector {
+						add( "Id" )
+						add( "Title" )
+						add( "Price" )
+						add( "Author" )
+						add( "Date" )
+					}, new java.util.Vector {
+						add( class java.lang.Object )
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+					}, new java.util.Vector {
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+					}, new java.util.Vector {
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+					} )
+				} )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button1"
+				"text": "Retour"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "button1ActionPerformed", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button2"
+				"text": "Supprimer"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "button2ActionPerformed", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button3"
+				"text": "Selectionner"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "button3ActionPerformed", true ) )
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "button3ActionPerformed", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "idf"
+				"editable": false
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "Id"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": "Title"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label3"
+				"text": "Price"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label4"
+				"text": "Author"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label5"
+				"text": "Date"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "titlef"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "pricef"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "authorf"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "datef"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button4"
+				"text": "Update"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "button4ActionPerformed", true ) )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 855, 440 )
+		} )
+	}
+}

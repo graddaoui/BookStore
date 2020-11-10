@@ -2,6 +2,7 @@ package dao;
 
 import entities.Book;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -12,9 +13,11 @@ public class DaoBook {
 
 	private Statement stmt;
 
+    public DaoBook (){}
 	public DaoBook(Statement stmt) {
 		this.stmt = stmt;
 	}
+
 
 	public void addBook(Book book) throws SQLException {
 		String query = "INSERT INTO book (id, title, price, author, releaseDate) VALUES (" + book.getId() + ", '"
@@ -40,5 +43,14 @@ public class DaoBook {
 		}
 
 		return list;
+	}
+	public boolean deleteBook(int id) throws SQLException
+	{
+		String query = "DELETE FROM book where id = "+id ;
+		return stmt.execute(query);
+	}
+	public boolean updateBook(Book book ) throws SQLException {
+        String query = "UPDATE book SET title ='"+book.getTitle()+"', price ='"+book.getPrice()+"',author ='"+book.getAuthor()+"',releaseDate ='"+book.getDate()+"' WHERE id ='"+book.getId()+"'" ;
+		return stmt.execute(query);
 	}
 }
