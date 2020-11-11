@@ -72,7 +72,7 @@ public class Ajout extends JFrame {
             ioe.printStackTrace();
         }
 
-        book.setCover(outputFile.getName());
+        book.setCover(outputFile.getPath().replace("\\", "\\\\"));
 
         daobook.addBook(book);
 
@@ -97,6 +97,15 @@ public class Ajout extends JFrame {
 
             inputFile = fc.getSelectedFile();
 
+            String filename = inputFile.getAbsolutePath();
+            textField1.setText(filename);
+            // Image getAbsolutePath = null ;
+            ImageIcon icon = new ImageIcon(filename);
+
+            Image image = icon.getImage().getScaledInstance(label7.getWidth(),label7.getHeight(),Image.SCALE_SMOOTH);
+            label7.setIcon(icon);
+
+
         }
     }
 
@@ -117,6 +126,8 @@ public class Ajout extends JFrame {
         button2 = new JButton();
         label6 = new JLabel();
         button3 = new JButton();
+        label7 = new JLabel();
+        textField1 = new JTextField();
 
         //======== this ========
         Container contentPane = getContentPane();
@@ -157,11 +168,14 @@ public class Ajout extends JFrame {
         button3.setText("Open File");
         button3.addActionListener(e -> button3ActionPerformed(e));
 
+        //---- textField1 ----
+        textField1.setEditable(false);
+
         GroupLayout contentPaneLayout = new GroupLayout(contentPane);
         contentPane.setLayout(contentPaneLayout);
         contentPaneLayout.setHorizontalGroup(
             contentPaneLayout.createParallelGroup()
-                .addGroup(contentPaneLayout.createSequentialGroup()
+                .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
                     .addGroup(contentPaneLayout.createParallelGroup()
                         .addGroup(contentPaneLayout.createSequentialGroup()
                             .addGap(20, 20, 20)
@@ -178,20 +192,23 @@ public class Ajout extends JFrame {
                         .addGroup(contentPaneLayout.createSequentialGroup()
                             .addGap(38, 38, 38)
                             .addGroup(contentPaneLayout.createParallelGroup()
-                                .addComponent(textauthor, GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
+                                .addComponent(textauthor)
                                 .addComponent(textdate)
                                 .addComponent(texttitle)
                                 .addComponent(textprice)
-                                .addComponent(textid))
-                            .addGap(58, 58, 58)
-                            .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                .addComponent(button1, GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
-                                .addComponent(button2, GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE))
-                            .addGap(161, 161, 161))
+                                .addComponent(textid)))
                         .addGroup(contentPaneLayout.createSequentialGroup()
                             .addGap(62, 62, 62)
                             .addComponent(button3)
-                            .addContainerGap(479, Short.MAX_VALUE))))
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                            .addComponent(textField1, GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE)
+                            .addGap(16, 16, 16)))
+                    .addGap(58, 58, 58)
+                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                        .addComponent(button1, GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
+                        .addComponent(button2, GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
+                        .addComponent(label7, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE))
+                    .addGap(161, 161, 161))
         );
         contentPaneLayout.setVerticalGroup(
             contentPaneLayout.createParallelGroup()
@@ -215,17 +232,22 @@ public class Ajout extends JFrame {
                         .addComponent(button2)
                         .addComponent(textprice, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                     .addGap(26, 26, 26)
-                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                        .addComponent(label4)
-                        .addComponent(textauthor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                    .addGap(28, 28, 28)
-                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                        .addComponent(label5)
-                        .addComponent(textdate, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                    .addGap(23, 23, 23)
+                    .addGroup(contentPaneLayout.createParallelGroup()
+                        .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
+                            .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(label4)
+                                .addComponent(textauthor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                            .addGap(61, 61, 61)
+                            .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(label5)
+                                .addComponent(textdate, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                            .addGap(33, 33, 33))
+                        .addComponent(label7, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE))
+                    .addGap(31, 31, 31)
                     .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                         .addComponent(label6)
-                        .addComponent(button3))
+                        .addComponent(button3)
+                        .addComponent(textField1, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE))
                     .addGap(26, 26, 26))
         );
         pack();
@@ -249,6 +271,8 @@ public class Ajout extends JFrame {
     private JButton button2;
     private JLabel label6;
     private JButton button3;
+    private JLabel label7;
+    private JTextField textField1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
     private JFileChooser fc;
 
