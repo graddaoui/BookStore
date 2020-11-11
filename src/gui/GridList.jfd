@@ -4,7 +4,7 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq t {space ::191:x, comp button4:::p:105:p, space :p:49:p, comp button3:::p::p, space :p:63:p, comp button1:::p:117:p, space :p:57:p, comp button2:::p:125:p, space :p:26:p}, seq {space :::p, par l {comp label3::l:p::p, comp label4::l:p::p, comp label5::l:p::p, comp label2::l:p::p, comp label1::l:p::p}, space :::x, par t:::p {comp authorf::l::157:x, comp pricef::l::157:x, comp titlef::l::157:x, comp datef::l:::x, comp idf::l::157:x}, space :p:226:p, comp scrollPane1:::p:409:p}}"
+			"$horizontalGroup": "par l {seq t {par l {seq {space ::191:x, comp button4:::p:105:p, space :p:49:p}, seq l {space :::p, par l {comp label3::l:p::p, comp label4::l:p::p, comp label5::l:p::p, comp label2::l:p::p, comp label1::l:p::p}, space :::x, par t:::p {comp authorf::l::157:x, comp pricef::l::157:x, comp titlef::l::157:x, comp datef::l:::x, comp idf::l::157:x}, space :p:127:p}}, par l {comp scrollPane1:::p:508:p, seq t {comp button3:::p::p, space :p:63:p, comp button1:::p:117:p, space :p:57:p, comp button2:::p:125:p, space :p:26:p}}}}"
 			"$verticalGroup": "par l {seq l {comp scrollPane1:::p:203:p, space ::151:x, par b {comp button2::b:p::p, comp button1::b:p::p, comp button3::b:p::p, comp button4::b:p::p}, space :p:27:p}, seq l {space :p:42:p, par b {comp label1::b:p::p, comp idf::b:p::p}, space :p:26:p, par b {comp label2::b:p::p, comp titlef::b:p::p}, space :p:33:p, par b {comp label3::b:p::p, comp pricef::b:p::p}, space :p:29:p, par b {comp label4::b:p::p, comp authorf::b:p::p}, space :p:34:p, par b {comp label5::b:p::p, comp datef::b:p::p}, space ::97:x}}"
 		} ) {
 			name: "this"
@@ -19,19 +19,23 @@ new FormModel {
 						add( "Price" )
 						add( "Author" )
 						add( "Date" )
+						add( "image path" )
 					}, new java.util.Vector {
 						add( class java.lang.Object )
 						add( null )
 						add( null )
 						add( null )
 						add( null )
-					}, new java.util.Vector {
-						add( null )
-						add( null )
-						add( null )
-						add( null )
 						add( null )
 					}, new java.util.Vector {
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+					}, new java.util.Vector {
+						add( null )
 						add( null )
 						add( null )
 						add( null )

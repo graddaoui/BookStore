@@ -20,8 +20,7 @@ public class DaoBook {
 
 
 	public void addBook(Book book) throws SQLException {
-		String query = "INSERT INTO book (id, title, price, author, releaseDate, cover) VALUES (" + book.getId() + ", '"
-				+ book.getTitle() + "', '" + book.getPrice() + "', '" + book.getAuthor() + "', '" + book.getDate()
+		String query = "INSERT INTO book (title, price, author, releaseDate, cover) VALUES ('"+ book.getTitle() + "', '" + book.getPrice() + "', '" + book.getAuthor() + "', '" + book.getDate()
 				+ "', '" + book.getCover() + "')";
 		stmt.executeUpdate(query);
 	}
@@ -38,6 +37,7 @@ public class DaoBook {
 			book.setDate(rs.getDate("releaseDate"));
 			book.setPrice(rs.getDouble("price"));
 			book.setTitle(rs.getString("title"));
+			book.setCover(rs.getString("cover"));
 
 			list.add(book);
 		}

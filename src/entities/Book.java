@@ -42,7 +42,7 @@ public class Book {
 	}
 
 	public String getCover() {
-		return cover;
+		return this.cover;
 	}
 
 	public void setCover(String cover) {
@@ -51,7 +51,7 @@ public class Book {
 
 	@Override
 	public String toString() {
-		return "Book [id=" + id + ", title=" + title + ", price=" + price + ", author=" + author + ", date=" + date + "]";
+		return "Book [id=" + id + ", title=" + title + ", price=" + price + ", author=" + author + ", date=" + date +" , cover ="+this.cover + "]";
 	}
 
 }

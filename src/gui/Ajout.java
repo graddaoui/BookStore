@@ -30,16 +30,16 @@ public class Ajout extends JFrame {
 
     Connection conn = null ;
     private void button1ActionPerformed(ActionEvent e) throws SQLException {
-       int id = Integer.parseInt(textid.getText());
+      //int id = Integer.parseInt(textid.getText());
        String title = texttitle.getText();
        double price = Double.parseDouble(textprice.getText());
        String author = textauthor.getText();
        String date = textdate.getText();
-        conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/BookStore", "root", "");
+        conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/BookStore", "root", "12345");
        Statement stmt = conn.createStatement();
         DaoBook daobook = new DaoBook(stmt);
         Book book = new Book();
-        book.setId(id);
+        //book.setId(id);
         book.setAuthor(author);
         book.setPrice(price);
         book.setTitle(title);
@@ -147,6 +147,9 @@ public class Ajout extends JFrame {
         //---- label5 ----
         label5.setText("Date");
 
+        //---- textid ----
+        textid.setEditable(false);
+
         //---- button1 ----
         button1.setText("Ajouter");
         button1.addActionListener(e -> {
@@ -200,7 +203,7 @@ public class Ajout extends JFrame {
                         .addGroup(contentPaneLayout.createSequentialGroup()
                             .addGap(62, 62, 62)
                             .addComponent(button3)
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(textField1, GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE)
                             .addGap(16, 16, 16)))
                     .addGap(58, 58, 58)

@@ -23,7 +23,7 @@ import javax.swing.table.*;
  * @author unknown
  */
 public class GridList extends JFrame {
-    public Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/BookStore", "root", "") ;
+    public Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/BookStore","root","12345") ;
     public GridList() throws SQLException {
         initComponents();
     }
@@ -53,6 +53,7 @@ public class GridList extends JFrame {
         System.out.println(row);
         int id = Integer.parseInt(table.getValueAt(row,col).toString());
         System.out.println(id);
+
         Statement stmt = conn.createStatement();
        DaoBook daoBook = new DaoBook(stmt);
        if (!(daoBook.deleteBook(id))) {
@@ -65,12 +66,13 @@ public class GridList extends JFrame {
         ////////////////////////////////////////////////////
         List<Book> liste = daoBook.listBook();
        for (Book b : liste){
-           Object [] o = new Object[5] ;
+           Object [] o = new Object[6] ;
            o[0]=b.getId();
            o[1]=b.getTitle();
            o[2]=b.getPrice();
            o[3]=b.getAuthor();
            o[4]=b.getDate();
+           o[5]=b.getCover();
            table.addRow(o);
        }
 
@@ -136,7 +138,7 @@ public class GridList extends JFrame {
                 new Object[][] {
                 },
                 new String[] {
-                    "Id", "Title", "Price", "Author", "Date"
+                    "Id", "Title", "Price", "Author", "Date", "image path"
                 }
             ));
             scrollPane1.setViewportView(table1);
@@ -198,32 +200,36 @@ public class GridList extends JFrame {
         contentPaneLayout.setHorizontalGroup(
             contentPaneLayout.createParallelGroup()
                 .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
-                    .addContainerGap(191, Short.MAX_VALUE)
-                    .addComponent(button4, GroupLayout.PREFERRED_SIZE, 105, GroupLayout.PREFERRED_SIZE)
-                    .addGap(49, 49, 49)
-                    .addComponent(button3)
-                    .addGap(63, 63, 63)
-                    .addComponent(button1, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
-                    .addGap(57, 57, 57)
-                    .addComponent(button2, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
-                    .addGap(26, 26, 26))
-                .addGroup(contentPaneLayout.createSequentialGroup()
-                    .addContainerGap()
                     .addGroup(contentPaneLayout.createParallelGroup()
-                        .addComponent(label3)
-                        .addComponent(label4)
-                        .addComponent(label5)
-                        .addComponent(label2)
-                        .addComponent(label1))
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(authorf, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
-                        .addComponent(pricef, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
-                        .addComponent(titlef, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
-                        .addComponent(datef, GroupLayout.Alignment.LEADING)
-                        .addComponent(idf, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE))
-                    .addGap(226, 226, 226)
-                    .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 409, GroupLayout.PREFERRED_SIZE))
+                        .addGroup(contentPaneLayout.createSequentialGroup()
+                            .addContainerGap(191, Short.MAX_VALUE)
+                            .addComponent(button4, GroupLayout.PREFERRED_SIZE, 105, GroupLayout.PREFERRED_SIZE)
+                            .addGap(49, 49, 49))
+                        .addGroup(contentPaneLayout.createSequentialGroup()
+                            .addContainerGap()
+                            .addGroup(contentPaneLayout.createParallelGroup()
+                                .addComponent(label3)
+                                .addComponent(label4)
+                                .addComponent(label5)
+                                .addComponent(label2)
+                                .addComponent(label1))
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(authorf, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
+                                .addComponent(pricef, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
+                                .addComponent(titlef, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
+                                .addComponent(datef, GroupLayout.Alignment.LEADING)
+                                .addComponent(idf, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE))
+                            .addGap(127, 127, 127)))
+                    .addGroup(contentPaneLayout.createParallelGroup()
+                        .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 508, GroupLayout.PREFERRED_SIZE)
+                        .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
+                            .addComponent(button3)
+                            .addGap(63, 63, 63)
+                            .addComponent(button1, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
+                            .addGap(57, 57, 57)
+                            .addComponent(button2, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
+                            .addGap(26, 26, 26))))
         );
         contentPaneLayout.setVerticalGroup(
             contentPaneLayout.createParallelGroup()
@@ -265,19 +271,20 @@ public class GridList extends JFrame {
         /////////////////////////////////////////////////////////////////////////////////////////////
         //////// Fetching Data
         //////////////////////////////////////////////////////////////////////////////////////////////
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/BookStore", "root", "");
+        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/BookStore", "root", "12345");
         Statement stmt = conn.createStatement();
         DaoBook daoBook = new DaoBook(stmt);
         List<Book> listbook = daoBook.listBook();
         DefaultTableModel dt = (DefaultTableModel) table1.getModel();
         for (Book b : listbook)
         {
-        Object[] ob = new Object[5];
+        Object[] ob = new Object[6];
         ob[0]=b.getId();
         ob[1]=b.getTitle();
         ob[2]=b.getPrice();
         ob[3]=b.getAuthor();
         ob[4]=b.getDate();
+        ob[5]=b.getCover();
         dt.addRow(ob);
         }
     }
