@@ -23,7 +23,7 @@ import javax.swing.table.*;
  * @author unknown
  */
 public class GridList extends JFrame {
-    public Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/BookStore", "root", "12345") ;
+    public Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/BookStore", "root", "") ;
     public GridList() throws SQLException {
         initComponents();
     }
@@ -265,7 +265,7 @@ public class GridList extends JFrame {
         /////////////////////////////////////////////////////////////////////////////////////////////
         //////// Fetching Data
         //////////////////////////////////////////////////////////////////////////////////////////////
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/BookStore", "root", "12345");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/BookStore", "root", "");
         Statement stmt = conn.createStatement();
         DaoBook daoBook = new DaoBook(stmt);
         List<Book> listbook = daoBook.listBook();

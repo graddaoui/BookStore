@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq l {par l {seq l {space :p:20:p, comp label1:::p:37:p}, seq l {space :p:31:p, par l {comp label3:::p::p, comp label2:::p::p, comp label4::l:p::p, comp label5::l:p::p}}}, space :p:44:p, par l {comp textauthor:::::x, comp textdate:::::x, comp textid:::p:177:p, comp texttitle::l:::x, comp textprice::l:::x}, space :p:58:p, par l:::p {comp button1::::173:x, comp button2::::173:x}, space :p:161:p}}"
-			"$verticalGroup": "par l {seq l {par l {seq {space :p:47:p, par b {comp label1::b:p::p, comp textid::b:p::p}, space s:::p, par b {comp label2::b:p::p, comp texttitle::b:p::p}}, seq l {space :p:68:p, comp button1:::p::p}}, space :p:25:p, par b {comp label3::b:p::p, comp button2::b:p::p, comp textprice::b:p::p}, space :p:26:p, par b {comp label4::b:p::p, comp textauthor::b:p::p}, space :p:28:p, par b {comp label5::b:p::p, comp textdate::b:p::p}, space ::82:x}}"
+			"$horizontalGroup": "par l {seq l {par l {seq l {space :p:20:p, comp label1:::p:37:p}, seq l {space :p:31:p, par l {comp label3:::p::p, comp label2:::p::p, comp label4::l:p::p, comp label5::l:p::p, comp label6::l:p::p}}}, par l {seq {space :p:38:p, par l {comp textauthor::::195:x, comp textdate:::::x, comp texttitle::l:::x, comp textprice::l:::x, comp textid::l:::x}, space :p:58:p, par l:::p {comp button1::::173:x, comp button2::::173:x}, space :p:161:p}, seq l {space :p:62:p, comp button3:::p::p, space ::479:x}}}}"
+			"$verticalGroup": "par l {seq l {par l {seq {space :p:47:p, par b {comp label1::b:p::p, comp textid::b:p::p}, space s:::p, par b {comp label2::b:p::p, comp texttitle::b:p::p}}, seq l {space :p:68:p, comp button1:::p::p}}, space :p:25:p, par b {comp label3::b:p::p, comp button2::b:p::p, comp textprice::b:p::p}, space :p:26:p, par b {comp label4::b:p::p, comp textauthor::b:p::p}, space :p:28:p, par b {comp label5::b:p::p, comp textdate::b:p::p}, space :p:23:p, par b {comp label6::b:p::p, comp button3::b:p::p}, space :p:26:p}}"
 		} ) {
 			name: "this"
 			add( new FormComponent( "javax.swing.JLabel" ) {
@@ -52,6 +52,15 @@ new FormModel {
 				name: "button2"
 				"text": "Retour"
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "button2ActionPerformed", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label6"
+				"text": "Cover"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button3"
+				"text": "Open File"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "button3ActionPerformed", true ) )
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 60, 0 )

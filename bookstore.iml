@@ -17,7 +17,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../2020-2021/JDBC/mysql-connector-java-5.1.48/mysql-connector-java-5.1.48-bin.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/mysql-connector-java-5.1.48/mysql-connector-java-5.1.48-bin.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

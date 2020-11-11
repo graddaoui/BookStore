@@ -7,6 +7,7 @@ public class Book {
 	private String title;
 	private double price;
 	private String author;
+	private String cover;
 	private Date date;
 
 	public int getId() {
@@ -38,6 +39,14 @@ public class Book {
 	}
 	public void setDate(Date date) {
 		this.date = date;
+	}
+
+	public String getCover() {
+		return cover;
+	}
+
+	public void setCover(String cover) {
+		this.cover = cover;
 	}
 
 	@Override

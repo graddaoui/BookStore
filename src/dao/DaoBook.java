@@ -20,9 +20,9 @@ public class DaoBook {
 
 
 	public void addBook(Book book) throws SQLException {
-		String query = "INSERT INTO book (id, title, price, author, releaseDate) VALUES (" + book.getId() + ", '"
+		String query = "INSERT INTO book (id, title, price, author, releaseDate, cover) VALUES (" + book.getId() + ", '"
 				+ book.getTitle() + "', '" + book.getPrice() + "', '" + book.getAuthor() + "', '" + book.getDate()
-				+ "')";
+				+ "', '" + book.getCover() + "')";
 		stmt.executeUpdate(query);
 	}
 

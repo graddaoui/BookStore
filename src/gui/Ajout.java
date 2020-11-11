@@ -9,6 +9,10 @@ import entities.Book;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.*;
 import javax.swing.*;
 import javax.swing.GroupLayout;
@@ -17,9 +21,13 @@ import javax.swing.GroupLayout;
  * @author unknown
  */
 public class Ajout extends JFrame {
+
     public Ajout() {
         initComponents();
+        fc = new JFileChooser();
+        fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
     }
+
     Connection conn = null ;
     private void button1ActionPerformed(ActionEvent e) throws SQLException {
        int id = Integer.parseInt(textid.getText());
@@ -27,7 +35,7 @@ public class Ajout extends JFrame {
        double price = Double.parseDouble(textprice.getText());
        String author = textauthor.getText();
        String date = textdate.getText();
-        conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/BookStore", "root", "12345");
+        conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/BookStore", "root", "");
        Statement stmt = conn.createStatement();
         DaoBook daobook = new DaoBook(stmt);
         Book book = new Book();
@@ -36,7 +44,38 @@ public class Ajout extends JFrame {
         book.setPrice(price);
         book.setTitle(title);
         book.setDate(Date.valueOf(date));
+
+
+        // Image
+        outputFile =new File("image\\" + inputFile.getName());
+
+        try{
+
+            FileInputStream instream = new FileInputStream(inputFile);
+            FileOutputStream outstream = new FileOutputStream(outputFile);
+
+            byte[] buffer = new byte[1024];
+
+            int length;
+            /*copying the contents from input stream to
+             * output stream using read and write methods
+             */
+            while ((length = instream.read(buffer)) > 0){
+                outstream.write(buffer, 0, length);
+            }
+
+            //Closing the input/output file streams
+            instream.close();
+            outstream.close();
+
+        }catch(IOException ioe){
+            ioe.printStackTrace();
+        }
+
+        book.setCover(outputFile.getName());
+
         daobook.addBook(book);
+
         JOptionPane.showMessageDialog(null,"ajout avec succé");
     /*;
      String query = "INSERT INTO book (id, title, price, author, releaseDate) VALUES (" + id+ ", '"
@@ -53,8 +92,12 @@ public class Ajout extends JFrame {
     }
 
     private void button3ActionPerformed(ActionEvent e) {
-        this.dispose();
-        System.exit(0);
+        int returnVal = fc.showOpenDialog(Ajout.this);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+
+            inputFile = fc.getSelectedFile();
+
+        }
     }
 
     private void initComponents() {
@@ -72,6 +115,8 @@ public class Ajout extends JFrame {
         textdate = new JTextField();
         button1 = new JButton();
         button2 = new JButton();
+        label6 = new JLabel();
+        button3 = new JButton();
 
         //======== this ========
         Container contentPane = getContentPane();
@@ -105,6 +150,13 @@ public class Ajout extends JFrame {
         button2.setText("Retour");
         button2.addActionListener(e -> button2ActionPerformed(e));
 
+        //---- label6 ----
+        label6.setText("Cover");
+
+        //---- button3 ----
+        button3.setText("Open File");
+        button3.addActionListener(e -> button3ActionPerformed(e));
+
         GroupLayout contentPaneLayout = new GroupLayout(contentPane);
         contentPane.setLayout(contentPaneLayout);
         contentPaneLayout.setHorizontalGroup(
@@ -120,19 +172,26 @@ public class Ajout extends JFrame {
                                 .addComponent(label3)
                                 .addComponent(label2)
                                 .addComponent(label4)
-                                .addComponent(label5))))
-                    .addGap(44, 44, 44)
+                                .addComponent(label5)
+                                .addComponent(label6))))
                     .addGroup(contentPaneLayout.createParallelGroup()
-                        .addComponent(textauthor)
-                        .addComponent(textdate)
-                        .addComponent(textid, GroupLayout.PREFERRED_SIZE, 177, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(texttitle)
-                        .addComponent(textprice))
-                    .addGap(58, 58, 58)
-                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                        .addComponent(button1, GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
-                        .addComponent(button2, GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE))
-                    .addGap(161, 161, 161))
+                        .addGroup(contentPaneLayout.createSequentialGroup()
+                            .addGap(38, 38, 38)
+                            .addGroup(contentPaneLayout.createParallelGroup()
+                                .addComponent(textauthor, GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
+                                .addComponent(textdate)
+                                .addComponent(texttitle)
+                                .addComponent(textprice)
+                                .addComponent(textid))
+                            .addGap(58, 58, 58)
+                            .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                .addComponent(button1, GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
+                                .addComponent(button2, GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE))
+                            .addGap(161, 161, 161))
+                        .addGroup(contentPaneLayout.createSequentialGroup()
+                            .addGap(62, 62, 62)
+                            .addComponent(button3)
+                            .addContainerGap(479, Short.MAX_VALUE))))
         );
         contentPaneLayout.setVerticalGroup(
             contentPaneLayout.createParallelGroup()
@@ -163,7 +222,11 @@ public class Ajout extends JFrame {
                     .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                         .addComponent(label5)
                         .addComponent(textdate, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap(82, Short.MAX_VALUE))
+                    .addGap(23, 23, 23)
+                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                        .addComponent(label6)
+                        .addComponent(button3))
+                    .addGap(26, 26, 26))
         );
         pack();
         setLocationRelativeTo(getOwner());
@@ -184,5 +247,12 @@ public class Ajout extends JFrame {
     private JTextField textdate;
     private JButton button1;
     private JButton button2;
+    private JLabel label6;
+    private JButton button3;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
+    private JFileChooser fc;
+
+    private File inputFile;
+    private File outputFile;
+
 }
