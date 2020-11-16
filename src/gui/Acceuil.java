@@ -34,6 +34,11 @@ public class Acceuil extends JFrame {
         new GridList().show();
     }
 
+    private void button4ActionPerformed(ActionEvent e) throws SQLException {
+       this.dispose();
+       new command().show();
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - unknown
@@ -43,6 +48,8 @@ public class Acceuil extends JFrame {
         label1 = new JLabel();
         label2 = new JLabel();
         label3 = new JLabel();
+        button4 = new JButton();
+        label4 = new JLabel();
 
         //======== this ========
         setBackground(UIManager.getColor("Component.errorFocusColor"));
@@ -81,6 +88,20 @@ public class Acceuil extends JFrame {
         label3.setText("text");
         label3.setIcon(new ImageIcon("/home/ghost/Desktop/workshop/BookStore/assets/upd.jpg"));
 
+        //---- button4 ----
+        button4.setText("Command");
+        button4.setForeground(SystemColor.desktop);
+        button4.addActionListener(e -> {
+            try {
+                button4ActionPerformed(e);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        });
+
+        //---- label4 ----
+        label4.setIcon(new ImageIcon("/home/ghost/Desktop/workshop/BookStore/assets/or.png"));
+
         GroupLayout contentPaneLayout = new GroupLayout(contentPane);
         contentPane.setLayout(contentPaneLayout);
         contentPaneLayout.setHorizontalGroup(
@@ -89,25 +110,29 @@ public class Acceuil extends JFrame {
                     .addContainerGap()
                     .addGroup(contentPaneLayout.createParallelGroup()
                         .addGroup(contentPaneLayout.createSequentialGroup()
-                            .addComponent(button2, GroupLayout.PREFERRED_SIZE, 174, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(button1, GroupLayout.PREFERRED_SIZE, 182, GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(label3, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE))
+                            .addComponent(label2, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE))
                         .addGroup(contentPaneLayout.createSequentialGroup()
                             .addGap(14, 14, 14)
                             .addComponent(button3, GroupLayout.PREFERRED_SIZE, 168, GroupLayout.PREFERRED_SIZE))
                         .addGroup(contentPaneLayout.createSequentialGroup()
-                            .addComponent(button1, GroupLayout.PREFERRED_SIZE, 182, GroupLayout.PREFERRED_SIZE)
+                            .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(button4, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(button2, GroupLayout.PREFERRED_SIZE, 174, GroupLayout.PREFERRED_SIZE))
                             .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(label2, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)))
-                    .addGap(18, 18, 18)
-                    .addComponent(label1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(contentPaneLayout.createParallelGroup()
+                                .addComponent(label3, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(label4, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE))))
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(label1, GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
                     .addContainerGap())
         );
         contentPaneLayout.linkSize(SwingConstants.HORIZONTAL, new Component[] {button1, button2});
         contentPaneLayout.setVerticalGroup(
             contentPaneLayout.createParallelGroup()
                 .addGroup(contentPaneLayout.createSequentialGroup()
-                    .addContainerGap(81, Short.MAX_VALUE)
+                    .addContainerGap(68, Short.MAX_VALUE)
                     .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                         .addComponent(button1)
                         .addComponent(label2, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE))
@@ -115,7 +140,14 @@ public class Acceuil extends JFrame {
                     .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                         .addComponent(button2)
                         .addComponent(label3, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE))
-                    .addGap(153, 153, 153)
+                    .addGroup(contentPaneLayout.createParallelGroup()
+                        .addGroup(contentPaneLayout.createSequentialGroup()
+                            .addGap(52, 52, 52)
+                            .addComponent(button4))
+                        .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
+                            .addGap(42, 42, 42)
+                            .addComponent(label4, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)))
+                    .addGap(81, 81, 81)
                     .addComponent(button3)
                     .addGap(44, 44, 44))
                 .addGroup(contentPaneLayout.createSequentialGroup()
@@ -136,5 +168,7 @@ public class Acceuil extends JFrame {
     private JLabel label1;
     private JLabel label2;
     private JLabel label3;
+    private JButton button4;
+    private JLabel label4;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }
