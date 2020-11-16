@@ -284,7 +284,7 @@ public class GridList extends JFrame {
         ob[2]=b.getPrice();
         ob[3]=b.getAuthor();
         ob[4]=b.getDate();
-        ob[5]=b.getCover();
+        ob[5]= new ImageIcon(b.getCover());
         dt.addRow(ob);
         }
     }

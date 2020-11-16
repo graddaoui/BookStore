@@ -1,5 +1,0 @@
-'getTailLength()' in 'com.vermeg.Puma' clashes with 'getTailLength()' in 'com.vermeg.HasTail';
-attempting to assign weaker access privileges ('protected'); was 'public'
-
-'Puma' is abstract; cannot be instantiated
-

@@ -4,10 +4,12 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq l {space :::p, comp button1:::p:203:p, space ::134:x, comp button2:::p:234:p, space :::p}, seq l {space :p:193:p, comp button3:::p:168:p, space ::222:x}}"
-			"$verticalGroup": "par l {seq t {space ::73:x, par b {comp button2::b:p::p, comp button1::b:p::p}, space :p:91:p, comp button3:::p::p, space :p:127:p}}"
+			"$horizontalGroup": "par l {seq {space :::p, par l {seq {space :0:608:x, comp button3:::p:168:p}, seq {par l {comp button2:::p:203:p, comp button1::l:p:203:p}, space :0:573:x}}, space :::p}}"
+			"$verticalGroup": "par l {seq t {space :p:37:p, comp button1:::p::p, space :p:64:p, comp button2:::p::p, space ::209:x, comp button3:::p::p, space :::p}}"
 		} ) {
 			name: "this"
+			"background": &SwingColor0 new com.jformdesigner.model.SwingColor( "Component.errorFocusColor" )
+			"foreground": #SwingColor0
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "button1"
 				"text": "Ajouter Book"
@@ -25,7 +27,7 @@ new FormModel {
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 585, 380 )
+			"size": new java.awt.Dimension( 790, 435 )
 		} )
 	}
 }
