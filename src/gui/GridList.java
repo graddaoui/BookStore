@@ -141,9 +141,8 @@ public class GridList extends JFrame {
                     "Id", "Title", "Price", "Author", "Date", "image path"
                 }
             ));
-            table1.setBackground(Color.lightGray);
+            table1.setBackground(Color.gray);
             scrollPane1.setViewportView(table1);
-            this.getContentPane().setBackground(Color.lightGray);
         }
 
         //---- button1 ----

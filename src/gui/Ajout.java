@@ -136,7 +136,7 @@ public class Ajout extends JFrame {
         setBackground(UIManager.getColor("Button.default.endBackground"));
         Container contentPane = getContentPane();
         contentPane.setLayout(null);
-        this.getContentPane().setBackground(Color.lightGray);
+
         //---- label1 ----
         label1.setText("     Id");
         contentPane.add(label1);
@@ -196,20 +196,20 @@ public class Ajout extends JFrame {
         //---- label6 ----
         label6.setText("Cover");
         contentPane.add(label6);
-        label6.setBounds(new Rectangle(new Point(449, 340), label6.getPreferredSize()));
+        label6.setBounds(new Rectangle(new Point(380, 340), label6.getPreferredSize()));
 
         //---- button3 ----
         button3.setText("Open File");
         button3.addActionListener(e -> button3ActionPerformed(e));
         contentPane.add(button3);
-        button3.setBounds(new Rectangle(new Point(736, 334), button3.getPreferredSize()));
+        button3.setBounds(new Rectangle(new Point(680, 335), button3.getPreferredSize()));
         contentPane.add(label7);
         label7.setBounds(635, 105, 180, 155);
 
         //---- textField1 ----
         textField1.setEditable(false);
         contentPane.add(textField1);
-        textField1.setBounds(495, 334, 223, textField1.getPreferredSize().height);
+        textField1.setBounds(450, 335, 223, textField1.getPreferredSize().height);
 
         //---- label8 ----
         label8.setBackground(new Color(102, 102, 102));

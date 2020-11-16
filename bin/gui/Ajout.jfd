@@ -104,7 +104,7 @@ new FormModel {
 				name: "label6"
 				"text": "Cover"
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-				"x": 449
+				"x": 380
 				"y": 340
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
@@ -112,8 +112,8 @@ new FormModel {
 				"text": "Open File"
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "button3ActionPerformed", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-				"x": 736
-				"y": 334
+				"x": 680
+				"y": 335
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label7"
@@ -127,8 +127,8 @@ new FormModel {
 				name: "textField1"
 				"editable": false
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-				"x": 495
-				"y": 334
+				"x": 450
+				"y": 335
 				"width": 223
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
