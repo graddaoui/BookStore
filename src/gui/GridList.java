@@ -141,7 +141,9 @@ public class GridList extends JFrame {
                     "Id", "Title", "Price", "Author", "Date", "image path"
                 }
             ));
+            table1.setBackground(Color.lightGray);
             scrollPane1.setViewportView(table1);
+            this.getContentPane().setBackground(Color.lightGray);
         }
 
         //---- button1 ----
@@ -234,36 +236,36 @@ public class GridList extends JFrame {
         contentPaneLayout.setVerticalGroup(
             contentPaneLayout.createParallelGroup()
                 .addGroup(contentPaneLayout.createSequentialGroup()
-                    .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 203, GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 151, Short.MAX_VALUE)
+                    .addGroup(contentPaneLayout.createParallelGroup()
+                        .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 203, GroupLayout.PREFERRED_SIZE)
+                        .addGroup(contentPaneLayout.createSequentialGroup()
+                            .addGap(42, 42, 42)
+                            .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(label1)
+                                .addComponent(idf, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                            .addGap(26, 26, 26)
+                            .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(label2)
+                                .addComponent(titlef, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                            .addGap(33, 33, 33)
+                            .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(label3)
+                                .addComponent(pricef, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                            .addGap(29, 29, 29)
+                            .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(label4)
+                                .addComponent(authorf, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                            .addGap(34, 34, 34)
+                            .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(label5)
+                                .addComponent(datef, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                     .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                         .addComponent(button2)
                         .addComponent(button1)
                         .addComponent(button3)
                         .addComponent(button4))
                     .addGap(27, 27, 27))
-                .addGroup(contentPaneLayout.createSequentialGroup()
-                    .addGap(42, 42, 42)
-                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                        .addComponent(label1)
-                        .addComponent(idf, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                    .addGap(26, 26, 26)
-                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                        .addComponent(label2)
-                        .addComponent(titlef, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                    .addGap(33, 33, 33)
-                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                        .addComponent(label3)
-                        .addComponent(pricef, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                    .addGap(29, 29, 29)
-                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                        .addComponent(label4)
-                        .addComponent(authorf, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                    .addGap(34, 34, 34)
-                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                        .addComponent(label5)
-                        .addComponent(datef, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap(97, Short.MAX_VALUE))
         );
         pack();
         setLocationRelativeTo(getOwner());
