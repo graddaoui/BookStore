@@ -23,7 +23,7 @@ import javax.swing.table.*;
  * @author unknown
  */
 public class GridList extends JFrame {
-    public Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/BookStore","root","12345") ;
+    public Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookstore","root","12345") ;
     public GridList() throws SQLException {
         initComponents();
     }

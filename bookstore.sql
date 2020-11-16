@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.3
+-- version 4.6.6deb5
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1
--- Généré le : lun. 16 nov. 2020 à 12:58
--- Version du serveur :  10.4.14-MariaDB
--- Version de PHP : 7.4.11
+-- Host: localhost:3306
+-- Generation Time: Nov 16, 2020 at 04:22 PM
+-- Server version: 5.7.32-0ubuntu0.18.04.1
+-- PHP Version: 7.2.24-0ubuntu0.18.04.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -18,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `bookstore`
+-- Database: `bookstore`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `book`
+-- Table structure for table `book`
 --
 
 CREATE TABLE `book` (
@@ -32,84 +31,36 @@ CREATE TABLE `book` (
   `title` varchar(255) NOT NULL,
   `price` double NOT NULL,
   `author` varchar(255) NOT NULL,
-  `releaseDate` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `client`
---
-
-CREATE TABLE `client` (
-  `id` int(11) NOT NULL,
-  `name` varchar(30) NOT NULL,
-  `last_name` varchar(30) NOT NULL,
-  `email` varchar(33) NOT NULL,
-  `adress` varchar(70) NOT NULL,
-  `tel` varchar(8) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `orders`
---
-
-CREATE TABLE `orders` (
-  `id` int(11) NOT NULL,
-  `order_date` date NOT NULL,
-  `book_id` int(11) NOT NULL,
-  `client_id` int(11) NOT NULL
+  `releaseDate` date NOT NULL,
+  `cover` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Index pour les tables déchargées
+-- Dumping data for table `book`
+--
+
+INSERT INTO `book` (`id`, `title`, `price`, `author`, `releaseDate`, `cover`) VALUES
+(6, 'title', 200, 'test', '2020-10-10', 'image\\gg.jpg');
+
+--
+-- Indexes for dumped tables
 --
 
 --
--- Index pour la table `book`
+-- Indexes for table `book`
 --
 ALTER TABLE `book`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `client`
---
-ALTER TABLE `client`
-  ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `orders`
---
-ALTER TABLE `orders`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `book_id` (`book_id`) USING BTREE,
-  ADD UNIQUE KEY `client_id` (`client_id`);
-
---
--- AUTO_INCREMENT pour les tables déchargées
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT pour la table `book`
+-- AUTO_INCREMENT for table `book`
 --
 ALTER TABLE `book`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT pour la table `client`
---
-ALTER TABLE `client`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `orders`
---
-ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-COMMIT;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
