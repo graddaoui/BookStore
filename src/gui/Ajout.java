@@ -35,7 +35,7 @@ public class Ajout extends JFrame {
        double price = Double.parseDouble(textprice.getText());
        String author = textauthor.getText();
        String date = textdate.getText();
-        conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/BookStore", "root", "12345");
+        conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookstore", "root", "");
        Statement stmt = conn.createStatement();
         DaoBook daobook = new DaoBook(stmt);
         Book book = new Book();

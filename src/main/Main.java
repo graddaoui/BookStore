@@ -17,7 +17,7 @@ public class Main {
 		Connection conn = null;
 
 		try {
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/BookStore", "root", "12345");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookstore", "root", "");
 			System.out.println("Vous �tes connect� !");
 		}
 
