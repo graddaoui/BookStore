@@ -168,13 +168,7 @@ public class command extends JFrame {
 
         //---- button3 ----
         button3.setText("Make Command");
-        button3.addActionListener(e -> {
-            try {
-                button3ActionPerformed(e);
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
-        });
+        button3.addActionListener(e -> button3ActionPerformed(e));
 
         //---- button4 ----
         button4.setText("Back");

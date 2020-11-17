@@ -177,13 +177,7 @@ public class Ajout extends JFrame {
 
         //---- button1 ----
         button1.setText("Ajouter");
-        button1.addActionListener(e -> {
-            try {
-                button1ActionPerformed(e);
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
-        });
+        button1.addActionListener(e -> button1ActionPerformed(e));
         contentPane.add(button1);
         button1.setBounds(new Rectangle(new Point(504, 382), button1.getPreferredSize()));
 

@@ -64,13 +64,7 @@ public class Acceuil extends JFrame {
         //---- button2 ----
         button2.setText("Modifier ou Supprimer");
         button2.setForeground(SystemColor.desktop);
-        button2.addActionListener(e -> {
-            try {
-                button2ActionPerformed(e);
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
-        });
+        button2.addActionListener(e -> button2ActionPerformed(e));
 
         //---- button3 ----
         button3.setText("Exit");
@@ -91,13 +85,7 @@ public class Acceuil extends JFrame {
         //---- button4 ----
         button4.setText("Command");
         button4.setForeground(SystemColor.desktop);
-        button4.addActionListener(e -> {
-            try {
-                button4ActionPerformed(e);
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
-        });
+        button4.addActionListener(e -> button4ActionPerformed(e));
 
         //---- label4 ----
         label4.setIcon(new ImageIcon("/home/ghost/Desktop/workshop/BookStore/assets/or.png"));

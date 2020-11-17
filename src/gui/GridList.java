@@ -151,13 +151,7 @@ public class GridList extends JFrame {
 
         //---- button2 ----
         button2.setText("Supprimer");
-        button2.addActionListener(e -> {
-            try {
-                button2ActionPerformed(e);
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
-        });
+        button2.addActionListener(e -> button2ActionPerformed(e));
 
         //---- button3 ----
         button3.setText("Selectionner");
@@ -186,15 +180,7 @@ public class GridList extends JFrame {
 
         //---- button4 ----
         button4.setText("Update");
-        button4.addActionListener(e -> {
-            try {
-                button4ActionPerformed(e);
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            } catch (ParseException parseException) {
-                parseException.printStackTrace();
-            }
-        });
+        button4.addActionListener(e -> button4ActionPerformed(e));
 
         GroupLayout contentPaneLayout = new GroupLayout(contentPane);
         contentPane.setLayout(contentPaneLayout);
