@@ -31,8 +31,8 @@ public class DaoCommande {
 
     }
 
-    public List<Order> listCommande(Client client) throws SQLException {
-        ResultSet rs = stmt.executeQuery("select * from orders where client_id = " + client.getId());
+    public List<Order> listCommande() throws SQLException {
+        ResultSet rs = stmt.executeQuery("select * from orders");
         List<Order> list = new ArrayList<>();
 
         while (rs.next()) {

@@ -11,10 +11,7 @@ import entities.Client;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.*;
@@ -66,7 +63,21 @@ public class command extends JFrame {
     }
 
     private void button3ActionPerformed(ActionEvent e) throws SQLException {
-   Client c = new Client();
+   /////////////////////////////////////
+        /////////// getting client Id
+        int id = 0 ;
+       PreparedStatement st = conn.prepareStatement("SELECT * FROM client");
+       ResultSet res = st.executeQuery();
+       while (res.next())
+       {
+           id = res.getInt("id");
+       }
+
+   ///////////////////////////////////////
+
+
+        Client c = new Client();
+       c.setId(id+1);
    c.setName(textField1.getText());
    c.setLastName(textField2.getText());
    c.setEmail(textField3.getText());
@@ -168,7 +179,13 @@ public class command extends JFrame {
 
         //---- button3 ----
         button3.setText("Make Command");
-        button3.addActionListener(e -> button3ActionPerformed(e));
+        button3.addActionListener(e -> {
+            try {
+                button3ActionPerformed(e);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        });
 
         //---- button4 ----
         button4.setText("Back");

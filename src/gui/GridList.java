@@ -9,12 +9,16 @@ import dao.DaoBook;
 import entities.Book;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.sql.*;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.List;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.GroupLayout;
 import javax.swing.table.*;
@@ -24,7 +28,7 @@ import javax.swing.table.*;
  */
 public class GridList extends JFrame {
     public Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookstore","root","12345") ;
-    public GridList() throws SQLException {
+    public GridList() throws SQLException, IOException {
         initComponents();
     }
 
@@ -106,7 +110,7 @@ public class GridList extends JFrame {
 */
     }
 
-    private void initComponents() throws SQLException {
+    private void initComponents() throws SQLException, IOException {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - unknown
         scrollPane1 = new JScrollPane();
@@ -151,7 +155,13 @@ public class GridList extends JFrame {
 
         //---- button2 ----
         button2.setText("Supprimer");
-        button2.addActionListener(e -> button2ActionPerformed(e));
+        button2.addActionListener(e -> {
+            try {
+                button2ActionPerformed(e);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        });
 
         //---- button3 ----
         button3.setText("Selectionner");
@@ -180,7 +190,15 @@ public class GridList extends JFrame {
 
         //---- button4 ----
         button4.setText("Update");
-        button4.addActionListener(e -> button4ActionPerformed(e));
+        button4.addActionListener(e -> {
+            try {
+                button4ActionPerformed(e);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            } catch (ParseException parseException) {
+                parseException.printStackTrace();
+            }
+        });
 
         GroupLayout contentPaneLayout = new GroupLayout(contentPane);
         contentPane.setLayout(contentPaneLayout);
@@ -263,6 +281,7 @@ public class GridList extends JFrame {
         DaoBook daoBook = new DaoBook(stmt);
         List<Book> listbook = daoBook.listBook();
         DefaultTableModel dt = (DefaultTableModel) table1.getModel();
+
         for (Book b : listbook)
         {
         Object[] ob = new Object[6];
@@ -271,7 +290,9 @@ public class GridList extends JFrame {
         ob[2]=b.getPrice();
         ob[3]=b.getAuthor();
         ob[4]=b.getDate();
-        ob[5]= new ImageIcon(b.getCover());
+        ImageIcon ic = new ImageIcon(b.getCover());
+        Image img = ic.getImage().getScaledInstance(10,10,Image.SCALE_SMOOTH);
+        ob[5]= new ImageIcon(img);
         dt.addRow(ob);
         }
     }

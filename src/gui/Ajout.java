@@ -49,8 +49,8 @@ public class Ajout extends JFrame {
 
 
         // Image
-        outputFile =new File("image\\" + inputFile.getName());
-
+        outputFile =new File( inputFile.getName());
+//"image\\" +
         try{
 
             FileInputStream instream = new FileInputStream(inputFile);
@@ -74,11 +74,11 @@ public class Ajout extends JFrame {
             ioe.printStackTrace();
         }
 
-        book.setCover(outputFile.getPath().replace("\\", "\\\\"));
+        book.setCover(textField1.getText());
 
         daobook.addBook(book);
 
-        JOptionPane.showMessageDialog(null,"ajout avec succé");
+        JOptionPane.showMessageDialog(null,"Book Added");
     /*;
      String query = "INSERT INTO book (id, title, price, author, releaseDate) VALUES (" + id+ ", '"
              + title+ "', '" + price + "', '" + author + "', '" + Date.valueOf(date)
@@ -103,9 +103,9 @@ public class Ajout extends JFrame {
             textField1.setText(filename);
             // Image getAbsolutePath = null ;
             ImageIcon icon = new ImageIcon(filename);
-
+            System.out.println(filename);
             Image image = icon.getImage().getScaledInstance(label7.getWidth(),label7.getHeight(),Image.SCALE_SMOOTH);
-            label7.setIcon(icon);
+            label7.setIcon(new ImageIcon(image));
 
 
         }
@@ -177,7 +177,13 @@ public class Ajout extends JFrame {
 
         //---- button1 ----
         button1.setText("Ajouter");
-        button1.addActionListener(e -> button1ActionPerformed(e));
+        button1.addActionListener(e -> {
+            try {
+                button1ActionPerformed(e);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        });
         contentPane.add(button1);
         button1.setBounds(new Rectangle(new Point(504, 382), button1.getPreferredSize()));
 
