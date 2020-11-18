@@ -1,7 +1,6 @@
 /*
  * Created by JFormDesigner on Tue Nov 10 16:15:14 CET 2020
  */
-
 package gui;
 
 import java.awt.*;
@@ -89,15 +88,15 @@ public class Acceuil extends JFrame {
         button3.addActionListener(e -> button3ActionPerformed(e));
 
         //---- label1 ----
-        label1.setIcon(new ImageIcon("/home/ghost/Desktop/workshop/BookStore/assets/n.png"));
+        label1.setIcon(new ImageIcon("assets/n.png"));
 
         //---- label2 ----
         label2.setText("text");
-        label2.setIcon(new ImageIcon("/home/ghost/Desktop/workshop/BookStore/assets/ad.jpg"));
+        label2.setIcon(new ImageIcon("assets/ad.jpg"));
 
         //---- label3 ----
         label3.setText("text");
-        label3.setIcon(new ImageIcon("/home/ghost/Desktop/workshop/BookStore/assets/upd.jpg"));
+        label3.setIcon(new ImageIcon("assets/upd.jpg"));
 
         //---- button4 ----
         button4.setText("Command");
@@ -111,7 +110,7 @@ public class Acceuil extends JFrame {
         });
 
         //---- label4 ----
-        label4.setIcon(new ImageIcon("/home/ghost/Desktop/workshop/BookStore/assets/or.png"));
+        label4.setIcon(new ImageIcon("assets/or.png"));
 
         //---- button5 ----
         button5.setText("Command List");
@@ -125,10 +124,10 @@ public class Acceuil extends JFrame {
         });
 
         //---- label5 ----
-        label5.setIcon(new ImageIcon("/home/ghost/Desktop/workshop/BookStore/assets/commandlistIcon.png"));
+        label5.setIcon(new ImageIcon("assets/commandlistIcon.png"));
 
         //---- label6 ----
-        label6.setIcon(new ImageIcon("/home/ghost/Desktop/workshop/BookStore/assets/exit.jpg"));
+        label6.setIcon(new ImageIcon("assets/exit.jpg"));
 
         GroupLayout contentPaneLayout = new GroupLayout(contentPane);
         contentPane.setLayout(contentPaneLayout);

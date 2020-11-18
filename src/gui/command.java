@@ -192,7 +192,7 @@ public class command extends JFrame {
         button4.addActionListener(e -> button4ActionPerformed(e));
 
         //---- label6 ----
-        label6.setIcon(new ImageIcon("/home/ghost/Desktop/workshop/BookStore/assets/oie_16164739H6QWIK7m.png"));
+        label6.setIcon(new ImageIcon("assets/oie_16164739H6QWIK7m.png"));
 
         //---- button5 ----
         button5.setText("Select");

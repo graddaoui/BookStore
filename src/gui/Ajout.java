@@ -213,7 +213,7 @@ public class Ajout extends JFrame {
 
         //---- label8 ----
         label8.setBackground(new Color(102, 102, 102));
-        label8.setIcon(new ImageIcon("/home/ghost/Desktop/workshop/BookStore/assets/lar.jpg"));
+        label8.setIcon(new ImageIcon("assets/lar.jpg"));
         contentPane.add(label8);
         label8.setBounds(0, 0, 345, 430);
 

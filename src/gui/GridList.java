@@ -96,8 +96,7 @@ public class GridList extends JFrame {
         book.setDate(Date.valueOf(datef.getText()));
         if (!(daoBook.updateBook(book)));
         System.out.println("succé");
-
-      /* String query = "UPDATE book SET title = ? , price = ? , author = ? , releaseDate = ? WHERE id = ?" ;
+        /* String query = "UPDATE book SET title = ? , price = ? , author = ? , releaseDate = ? WHERE id = ?" ;
         PreparedStatement stm = conn.prepareStatement(query) ;
         stm.setString(1,titlef.getText());
         stm.setDouble(2,Double.parseDouble(pricef.getText()));

@@ -66,7 +66,7 @@ public class listeCommand extends JFrame {
         button1.addActionListener(e -> button1ActionPerformed(e));
 
         //---- label1 ----
-        label1.setIcon(new ImageIcon("/home/ghost/Desktop/workshop/BookStore/assets/coverliste.jpg"));
+        label1.setIcon(new ImageIcon("assets/coverliste.jpg"));
 
         GroupLayout contentPaneLayout = new GroupLayout(contentPane);
         contentPane.setLayout(contentPaneLayout);
