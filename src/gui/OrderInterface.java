@@ -5,9 +5,10 @@
 package gui;
 
 import dao.DaoBook;
-import dao.DaoCommande;
+import dao.DaoOrder;
 import entities.Book;
 import entities.Client;
+import main.DatabaseConnection;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -21,15 +22,14 @@ import javax.swing.table.DefaultTableModel;
 /**
  * @author unknown
  */
-public class command extends JFrame {
-    public Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookstore","root","12345") ;
-    public Statement stmt = conn.createStatement();
+public class OrderInterface extends JFrame {
+	Statement stmt = DatabaseConnection.getInstance().createStatement();
     List<Integer> ids = new ArrayList<>();
 
     public List<Book> l ;
     DefaultListModel jlist1Model;
 
-    public command() throws SQLException {
+    public OrderInterface() throws SQLException {
         initComponents();
 
         DaoBook daoBook = new DaoBook(stmt);
@@ -48,7 +48,7 @@ public class command extends JFrame {
 
     private void button4ActionPerformed(ActionEvent e) {
        this.dispose();
-       new Acceuil().show();
+       new HomeInterace().show();
     }
 
     private void button5ActionPerformed(ActionEvent e) {
@@ -63,17 +63,16 @@ public class command extends JFrame {
     }
 
     private void button3ActionPerformed(ActionEvent e) throws SQLException {
-   /////////////////////////////////////
-        /////////// getting client Id
+   
         int id = 0 ;
-       PreparedStatement st = conn.prepareStatement("SELECT * FROM client");
+       PreparedStatement st = DatabaseConnection.getInstance().prepareStatement("SELECT * FROM client");
        ResultSet res = st.executeQuery();
        while (res.next())
        {
            id = res.getInt("id");
        }
 
-   ///////////////////////////////////////
+   
 
 
         Client c = new Client();
@@ -97,9 +96,9 @@ public class command extends JFrame {
                booklist.add(bo);
        }
    }
-        DaoCommande daoCommande = new DaoCommande(stmt);
-       daoCommande.addCommande(booklist,c);
-       JOptionPane.showMessageDialog(null,"Command Saved , Thank you !");
+        DaoOrder daoOrder = new DaoOrder(stmt);
+        daoOrder.addOrder(booklist,c);
+       JOptionPane.showMessageDialog(null,"Order Saved , Thank you !");
 
     }
 
@@ -117,13 +116,10 @@ public class command extends JFrame {
     }
 
     private void initComponents() throws SQLException {
-        ///////////////////////////////////////////////////////////////
-        ////// fetch data to list
-        ////////////////////////////////////////////
+        
 
         this.getContentPane().setBackground(Color.lightGray);
-        // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - unknown
+        
         scrollPane1 = new JScrollPane();
         list1 = new JList<>();
         label1 = new JLabel();
@@ -178,7 +174,7 @@ public class command extends JFrame {
         label5.setText("Phone N\u00b0");
 
         //---- button3 ----
-        button3.setText("Make Command");
+        button3.setText("Make an order");
         button3.addActionListener(e -> {
             try {
                 button3ActionPerformed(e);
@@ -286,11 +282,10 @@ public class command extends JFrame {
         );
         pack();
         setLocationRelativeTo(getOwner());
-        // JFormDesigner - End of component initialization  //GEN-END:initComponents
+       
     }
 
-    // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - unknown
+   
     private JScrollPane scrollPane1;
     private JList<String> list1;
     private JLabel label1;
@@ -309,5 +304,5 @@ public class command extends JFrame {
     private JButton button5;
     private JButton button6;
     private JTextField textField6;
-    // JFormDesigner - End of variables declaration  //GEN-END:variables
+    
 }

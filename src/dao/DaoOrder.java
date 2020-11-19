@@ -11,15 +11,15 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DaoCommande {
+public class DaoOrder {
 
     private Statement stmt;
 
-    public DaoCommande(Statement stmt) {
+    public DaoOrder(Statement stmt) {
         this.stmt = stmt;
     }
 
-    public void addCommande (List<Book> bookList, Client client) throws SQLException {
+    public void addOrder (List<Book> bookList, Client client) throws SQLException {
 
         String clientQuery = "INSERT INTO client (name, last_name, email, adress, tel) VALUES ('"+ client.getName()  + "', '" + client.getLastName() + "', '" + client.getEmail() + "', '" + client.getAdress() + "', '" + client.getTel() + "')";
         stmt.executeUpdate(clientQuery);
@@ -31,7 +31,7 @@ public class DaoCommande {
 
     }
 
-    public List<Order> listCommande() throws SQLException {
+    public List<Order> listOfOrders() throws SQLException {
         ResultSet rs = stmt.executeQuery("select * from orders");
         List<Order> list = new ArrayList<>();
 

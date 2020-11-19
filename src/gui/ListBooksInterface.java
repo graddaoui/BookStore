@@ -7,6 +7,7 @@ package gui;
 import java.awt.event.*;
 import dao.DaoBook;
 import entities.Book;
+import main.DatabaseConnection;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -26,15 +27,14 @@ import javax.swing.table.*;
 /**
  * @author unknown
  */
-public class GridList extends JFrame {
-    public Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookstore","root","12345") ;
-    public GridList() throws SQLException, IOException {
+public class ListBooksInterface extends JFrame {
+    public ListBooksInterface() throws SQLException, IOException {
         initComponents();
     }
 
     private void button1ActionPerformed(ActionEvent e) {
         this.dispose();
-        new Acceuil().show();
+        new HomeInterace().show();
     }
 
     private void button3ActionPerformed(ActionEvent e) {
@@ -58,24 +58,23 @@ public class GridList extends JFrame {
         int id = Integer.parseInt(table.getValueAt(row,col).toString());
         System.out.println(id);
 
-        Statement stmt = conn.createStatement();
+        Statement stmt = DatabaseConnection.getInstance().createStatement();
+        
        DaoBook daoBook = new DaoBook(stmt);
        if (!(daoBook.deleteBook(id))) {
-           JOptionPane.showMessageDialog(null, "deleted");
+           JOptionPane.showMessageDialog(null, "Deleted");
            table.getDataVector().removeAllElements();
            table.fireTableDataChanged();
        }
-       ////////////////////////////////////////////////////
-        ///// mise a jour du grid
-        ////////////////////////////////////////////////////
-        List<Book> liste = daoBook.listBook();
-       for (Book b : liste){
+       
+        List<Book> listOfBooks = daoBook.listBook();
+       for (Book b : listOfBooks){
            Object [] o = new Object[6] ;
            o[0]=b.getId();
            o[1]=b.getTitle();
            o[2]=b.getPrice();
            o[3]=b.getAuthor();
-           o[4]=b.getDate();
+           o[4]=b.getReleaseDate();
            o[5]=b.getCover();
            table.addRow(o);
        }
@@ -86,32 +85,21 @@ public class GridList extends JFrame {
         DefaultTableModel table = (DefaultTableModel) table1.getModel();
         int row = table1.getSelectedRow();
         int id = Integer.parseInt(table.getValueAt(row,0).toString());
-        Statement stmt = conn.createStatement();
+        Statement stmt = DatabaseConnection.getInstance().createStatement();
         DaoBook daoBook = new DaoBook(stmt);
         Book book= new Book();
         book.setId(id);
         book.setTitle(titlef.getText());
         book.setPrice(Double.parseDouble(pricef.getText()));
         book.setAuthor(authorf.getText());
-        book.setDate(Date.valueOf(datef.getText()));
+        book.setReleaseDate(Date.valueOf(datef.getText()));
         if (!(daoBook.updateBook(book)));
-        System.out.println("succé");
-        /* String query = "UPDATE book SET title = ? , price = ? , author = ? , releaseDate = ? WHERE id = ?" ;
-        PreparedStatement stm = conn.prepareStatement(query) ;
-        stm.setString(1,titlef.getText());
-        stm.setDouble(2,Double.parseDouble(pricef.getText()));
-        stm.setString(3,authorf.getText());
-        stm.setDate(4,Date.valueOf(datef.getText()));
-        stm.setInt(5, Integer.parseInt(idf.getText()));
-        DaoBook daoBook = new DaoBook();
-        if (!(daoBook.updateBook(stm)))
-            System.out.println("succé");
-*/
+        System.out.println("Success");
+        
     }
 
     private void initComponents() throws SQLException, IOException {
-        // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - unknown
+        
         scrollPane1 = new JScrollPane();
         table1 = new JTable();
         button1 = new JButton();
@@ -153,7 +141,7 @@ public class GridList extends JFrame {
         button1.addActionListener(e -> button1ActionPerformed(e));
 
         //---- button2 ----
-        button2.setText("Supprimer");
+        button2.setText("Delete");
         button2.addActionListener(e -> {
             try {
                 button2ActionPerformed(e);
@@ -163,7 +151,7 @@ public class GridList extends JFrame {
         });
 
         //---- button3 ----
-        button3.setText("Selectionner");
+        button3.setText("Select");
         button3.addActionListener(e -> {
 			button3ActionPerformed(e);
 			button3ActionPerformed(e);
@@ -271,12 +259,9 @@ public class GridList extends JFrame {
         );
         pack();
         setLocationRelativeTo(getOwner());
-        // JFormDesigner - End of component initialization  //GEN-END:initComponents
-        /////////////////////////////////////////////////////////////////////////////////////////////
-        //////// Fetching Data
-        //////////////////////////////////////////////////////////////////////////////////////////////
-        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/BookStore", "root", "12345");
-        Statement stmt = conn.createStatement();
+        
+        Statement stmt = DatabaseConnection.getInstance().createStatement();
+        
         DaoBook daoBook = new DaoBook(stmt);
         List<Book> listbook = daoBook.listBook();
         DefaultTableModel dt = (DefaultTableModel) table1.getModel();
@@ -288,7 +273,7 @@ public class GridList extends JFrame {
         ob[1]=b.getTitle();
         ob[2]=b.getPrice();
         ob[3]=b.getAuthor();
-        ob[4]=b.getDate();
+        ob[4]=b.getReleaseDate();
         ImageIcon ic = new ImageIcon(b.getCover());
         Image img = ic.getImage().getScaledInstance(10,10,Image.SCALE_SMOOTH);
         ob[5]= new ImageIcon(img);
@@ -296,8 +281,7 @@ public class GridList extends JFrame {
         }
     }
 
-    // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - unknown
+   
     private JScrollPane scrollPane1;
     private JTable table1;
     private JButton button1;
@@ -314,5 +298,5 @@ public class GridList extends JFrame {
     private JTextField authorf;
     private JTextField datef;
     private JButton button4;
-    // JFormDesigner - End of variables declaration  //GEN-END:variables
+    
 }

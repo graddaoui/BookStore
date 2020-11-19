@@ -13,15 +13,15 @@ import javax.swing.GroupLayout;
 /**
  * @author unknown
  */
-public class Acceuil extends JFrame {
-    public Acceuil() {
+public class HomeInterace extends JFrame {
+    public HomeInterace() {
         initComponents();
 
     }
 
     private void button1ActionPerformed(ActionEvent e) {
         this.dispose();
-        new Ajout().show();
+        new AddInterface().show();
     }
 
     private void button3ActionPerformed(ActionEvent e) {
@@ -31,22 +31,21 @@ public class Acceuil extends JFrame {
 
     private void button2ActionPerformed(ActionEvent e) throws SQLException, IOException {
         this.dispose();
-        new GridList().show();
+        new ListBooksInterface().show();
     }
 
     private void button4ActionPerformed(ActionEvent e) throws SQLException {
        this.dispose();
-       new command().show();
+       new OrderInterface().show();
     }
 
     private void button5ActionPerformed(ActionEvent e) throws SQLException {
         this.dispose();
-        new listeCommand().show();
+        new ListOrdersInterface().show();
     }
 
     private void initComponents() {
-        // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - unknown
+     
         button1 = new JButton();
         button2 = new JButton();
         button3 = new JButton();
@@ -65,12 +64,12 @@ public class Acceuil extends JFrame {
         Container contentPane = getContentPane();
 
         //---- button1 ----
-        button1.setText("Ajouter Book");
+        button1.setText("Add a new book");
         button1.setForeground(SystemColor.desktop);
         button1.addActionListener(e -> button1ActionPerformed(e));
 
         //---- button2 ----
-        button2.setText("Modifier ou Supprimer");
+        button2.setText("Update/Delete a book");
         button2.setForeground(SystemColor.desktop);
         button2.addActionListener(e -> {
             try {
@@ -99,7 +98,7 @@ public class Acceuil extends JFrame {
         label3.setIcon(new ImageIcon("assets/upd.jpg"));
 
         //---- button4 ----
-        button4.setText("Command");
+        button4.setText("Order a book");
         button4.setForeground(SystemColor.desktop);
         button4.addActionListener(e -> {
             try {
@@ -113,7 +112,7 @@ public class Acceuil extends JFrame {
         label4.setIcon(new ImageIcon("assets/or.png"));
 
         //---- button5 ----
-        button5.setText("Command List");
+        button5.setText("Book orders list");
         button5.setForeground(SystemColor.desktop);
         button5.addActionListener(e -> {
             try {
