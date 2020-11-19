@@ -8,6 +8,17 @@ public class Order {
 	private int bookId;
 	private int clientId;
 	
+	public Order() {
+		
+	}
+	
+	public Order(int id, Date orderDate, int bookId, int clientId) {
+		this.id = id;
+		this.orderDate = orderDate;
+		this.bookId = bookId;
+		this.clientId = clientId;
+	}
+	
 	public int getId() {
 		return id;
 	}
