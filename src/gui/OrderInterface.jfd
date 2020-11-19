@@ -1,0 +1,88 @@
+JFDML JFormDesigner: "7.0.2.6.321" Java: "11.0.8" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {space :p:15:p, comp scrollPane1:::p:123:p, space s:::p, par l:::p {comp textField6::::184:x, comp button6::::184:x, comp button5::::184:x}, par l {seq l {space :p:127:p, par l {comp button3:::p:213:p, comp button4:::p:213:p}}, seq t {space :p:133:p, par l {comp label2::l:p::p, comp label3:::p::p, comp label4:::p::p, comp label5:::p::p, comp label1:::p::p}, space :p:47:p, par l:::p {comp textField1:::::x, comp textField2:::::x, comp textField3:::::x, comp textField4:::::x, comp textField5:::p:107:p}}}, space :::x}, seq t {space ::44:x, comp label6:::p:655:p, space :::p}}"
+			"$verticalGroup": "par l {seq t {comp label6::::111:x, space :p:12:p, par l:::p {seq l {par t {seq t {par b {comp textField1::b:p::p, comp label1::b:p:26:p}, space :::p, par b {comp label2::b:p:26:p, comp textField2::b:p::p, comp button5::b:p::p}, space :::p, comp label3::l:p:26:p}, comp textField3:::p::p}, space :::p, par b {comp label4::b:p:26:p, comp textField4::b:p::p}, space :::p, par b {comp label5::b:p:26:p, comp textField5::b:p::p}, space :::x, par b {comp button3::b:p::p, comp button6::b:p::p}, space u:::p, par b {comp textField6::b:p::p, comp button4::b:p::p}, space :p:35:p}, comp scrollPane1::l::308:x}, space :p:20:p}}"
+		} ) {
+			name: "this"
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane1"
+				add( new FormComponent( "javax.swing.JList" ) {
+					name: "list1"
+					"model": new javax.swing.DefaultListModel {
+						addElement( " " )
+					}
+				} )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "Name"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": "Last Name"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label3"
+				"text": "E_mail"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label4"
+				"text": "Adress"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label5"
+				"text": "Phone N°"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "textField1"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "textField2"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "textField3"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "textField4"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "textField5"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button3"
+				"text": "Make Command"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "button3ActionPerformed", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button4"
+				"text": "Back"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "button4ActionPerformed", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label6"
+				"icon": new com.jformdesigner.model.SwingIcon( 1, "/home/ghost/Desktop/workshop/BookStore/assets/oie_16164739H6QWIK7m.png" )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button5"
+				"text": "Select"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "button5ActionPerformed", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button6"
+				"text": "Check Total Price"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "button6ActionPerformed", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "textField6"
+				"editable": false
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 700, 480 )
+		} )
+	}
+}

@@ -7,14 +7,19 @@ package gui;
 import java.awt.event.*;
 import dao.DaoBook;
 import entities.Book;
+import main.DatabaseConnection;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.sql.*;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.List;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.GroupLayout;
 import javax.swing.table.*;
@@ -22,15 +27,14 @@ import javax.swing.table.*;
 /**
  * @author unknown
  */
-public class GridList extends JFrame {
-    public Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookstore","root","") ;
-    public GridList() throws SQLException {
+public class ListBooksInterface extends JFrame {
+    public ListBooksInterface() throws SQLException, IOException {
         initComponents();
     }
 
     private void button1ActionPerformed(ActionEvent e) {
         this.dispose();
-        new Acceuil().show();
+        new HomeInterace().show();
     }
 
     private void button3ActionPerformed(ActionEvent e) {
@@ -54,24 +58,23 @@ public class GridList extends JFrame {
         int id = Integer.parseInt(table.getValueAt(row,col).toString());
         System.out.println(id);
 
-        Statement stmt = conn.createStatement();
+        Statement stmt = DatabaseConnection.getInstance().createStatement();
+        
        DaoBook daoBook = new DaoBook(stmt);
        if (!(daoBook.deleteBook(id))) {
            JOptionPane.showMessageDialog(null, "deleted");
            table.getDataVector().removeAllElements();
            table.fireTableDataChanged();
        }
-       ////////////////////////////////////////////////////
-        ///// mise a jour du grid
-        ////////////////////////////////////////////////////
-        List<Book> liste = daoBook.listBook();
-       for (Book b : liste){
+       
+        List<Book> listOfBooks = daoBook.listBook();
+       for (Book b : listOfBooks){
            Object [] o = new Object[6] ;
            o[0]=b.getId();
            o[1]=b.getTitle();
            o[2]=b.getPrice();
            o[3]=b.getAuthor();
-           o[4]=b.getDate();
+           o[4]=b.getReleaseDate();
            o[5]=b.getCover();
            table.addRow(o);
        }
@@ -82,33 +85,21 @@ public class GridList extends JFrame {
         DefaultTableModel table = (DefaultTableModel) table1.getModel();
         int row = table1.getSelectedRow();
         int id = Integer.parseInt(table.getValueAt(row,0).toString());
-        Statement stmt = conn.createStatement();
+        Statement stmt = DatabaseConnection.getInstance().createStatement();
         DaoBook daoBook = new DaoBook(stmt);
         Book book= new Book();
         book.setId(id);
         book.setTitle(titlef.getText());
         book.setPrice(Double.parseDouble(pricef.getText()));
         book.setAuthor(authorf.getText());
-        book.setDate(Date.valueOf(datef.getText()));
+        book.setReleaseDate(Date.valueOf(datef.getText()));
         if (!(daoBook.updateBook(book)));
-        System.out.println("succé");
-
-      /* String query = "UPDATE book SET title = ? , price = ? , author = ? , releaseDate = ? WHERE id = ?" ;
-        PreparedStatement stm = conn.prepareStatement(query) ;
-        stm.setString(1,titlef.getText());
-        stm.setDouble(2,Double.parseDouble(pricef.getText()));
-        stm.setString(3,authorf.getText());
-        stm.setDate(4,Date.valueOf(datef.getText()));
-        stm.setInt(5, Integer.parseInt(idf.getText()));
-        DaoBook daoBook = new DaoBook();
-        if (!(daoBook.updateBook(stm)))
-            System.out.println("succé");
-*/
+        System.out.println("success");
+        
     }
 
-    private void initComponents() throws SQLException {
-        // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - unknown
+    private void initComponents() throws SQLException, IOException {
+        
         scrollPane1 = new JScrollPane();
         table1 = new JTable();
         button1 = new JButton();
@@ -141,6 +132,7 @@ public class GridList extends JFrame {
                     "Id", "Title", "Price", "Author", "Date", "image path"
                 }
             ));
+            table1.setBackground(Color.gray);
             scrollPane1.setViewportView(table1);
         }
 
@@ -234,48 +226,46 @@ public class GridList extends JFrame {
         contentPaneLayout.setVerticalGroup(
             contentPaneLayout.createParallelGroup()
                 .addGroup(contentPaneLayout.createSequentialGroup()
-                    .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 203, GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 151, Short.MAX_VALUE)
+                    .addGroup(contentPaneLayout.createParallelGroup()
+                        .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 203, GroupLayout.PREFERRED_SIZE)
+                        .addGroup(contentPaneLayout.createSequentialGroup()
+                            .addGap(42, 42, 42)
+                            .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(label1)
+                                .addComponent(idf, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                            .addGap(26, 26, 26)
+                            .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(label2)
+                                .addComponent(titlef, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                            .addGap(33, 33, 33)
+                            .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(label3)
+                                .addComponent(pricef, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                            .addGap(29, 29, 29)
+                            .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(label4)
+                                .addComponent(authorf, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                            .addGap(34, 34, 34)
+                            .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(label5)
+                                .addComponent(datef, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                     .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                         .addComponent(button2)
                         .addComponent(button1)
                         .addComponent(button3)
                         .addComponent(button4))
                     .addGap(27, 27, 27))
-                .addGroup(contentPaneLayout.createSequentialGroup()
-                    .addGap(42, 42, 42)
-                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                        .addComponent(label1)
-                        .addComponent(idf, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                    .addGap(26, 26, 26)
-                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                        .addComponent(label2)
-                        .addComponent(titlef, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                    .addGap(33, 33, 33)
-                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                        .addComponent(label3)
-                        .addComponent(pricef, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                    .addGap(29, 29, 29)
-                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                        .addComponent(label4)
-                        .addComponent(authorf, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                    .addGap(34, 34, 34)
-                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                        .addComponent(label5)
-                        .addComponent(datef, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap(97, Short.MAX_VALUE))
         );
         pack();
         setLocationRelativeTo(getOwner());
-        // JFormDesigner - End of component initialization  //GEN-END:initComponents
-        /////////////////////////////////////////////////////////////////////////////////////////////
-        //////// Fetching Data
-        //////////////////////////////////////////////////////////////////////////////////////////////
-        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/BookStore", "root", "12345");
-        Statement stmt = conn.createStatement();
+        
+        Statement stmt = DatabaseConnection.getInstance().createStatement();
+        
         DaoBook daoBook = new DaoBook(stmt);
         List<Book> listbook = daoBook.listBook();
         DefaultTableModel dt = (DefaultTableModel) table1.getModel();
+
         for (Book b : listbook)
         {
         Object[] ob = new Object[6];
@@ -283,14 +273,15 @@ public class GridList extends JFrame {
         ob[1]=b.getTitle();
         ob[2]=b.getPrice();
         ob[3]=b.getAuthor();
-        ob[4]=b.getDate();
-        ob[5]= new ImageIcon(b.getCover());
+        ob[4]=b.getReleaseDate();
+        ImageIcon ic = new ImageIcon(b.getCover());
+        Image img = ic.getImage().getScaledInstance(10,10,Image.SCALE_SMOOTH);
+        ob[5]= new ImageIcon(img);
         dt.addRow(ob);
         }
     }
 
-    // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - unknown
+   
     private JScrollPane scrollPane1;
     private JTable table1;
     private JButton button1;
@@ -307,5 +298,5 @@ public class GridList extends JFrame {
     private JTextField authorf;
     private JTextField datef;
     private JButton button4;
-    // JFormDesigner - End of variables declaration  //GEN-END:variables
+    
 }

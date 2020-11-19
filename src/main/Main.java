@@ -17,12 +17,12 @@ public class Main {
 		Connection conn = null;
 
 		try {
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookstore", "root", "");
-			System.out.println("Vous �tes connect� !");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/BookStore", "root", "12345");
+			System.out.println("Vous etes connectee !");
 		}
 
 		catch (SQLException e) {
-			throw new Error("Hmm.. il'ya un probl�me de connexion ! ", e);
+			throw new Error("Hmm.. il'ya un probleme de connexion ! ", e);
 		}
 
 		Statement stmt = conn.createStatement();
@@ -53,12 +53,12 @@ public class Main {
 
 				Book book = new Book();
 				book.setAuthor(author);
-				book.setDate(Date.valueOf(date));
+				book.setReleaseDate(Date.valueOf(date));
 				book.setPrice(price);
 				book.setTitle(title);
 
 				daoBook.addBook(book);
-				System.out.println("Vous avez ajouter en succ�es un nouveau livre.");
+				System.out.println("Vous avez ajouter en succees un nouveau livre.");
 
 				break;
 

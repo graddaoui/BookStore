@@ -1,8 +1,8 @@
 package gui;
 
-public class HomePage {
+public class Launcher {
     public static void main (String []args)
     {
-        new Acceuil().show();
+        new HomeInterace().show();
     }
 }
