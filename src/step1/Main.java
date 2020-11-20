@@ -4,8 +4,8 @@ import java.sql.*;
 import java.util.List;
 import java.util.Scanner;
 
-import dao.DaoBook;
-import entities.Book;
+import step2.dao.DaoBook;
+import step2.entities.Book;
 
 public class Main {
 	private static Scanner sc;
